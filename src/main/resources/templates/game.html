@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Игра "Поле чудес"</title>
+</head>
+<body>
+<h1>Игра "Поле чудес"</h1>
+
+<h2>Вопрос: <span th:text="${currentGame.wordToGuess.question}"></span></h2>
+<!--<h2>Слово для угадывания: <span th:text="${currentGame.wordToGuess.value}"></span></h2>-->
+<h2>Угаданные буквы: <span th:text="${currentGame.guessedWord}"></span></h2>
+<h2>Осталось попыток: <span th:text="${currentGame.remainingAttempts}"></span></h2>
+
+<form th:action="@{/game/guess}" method="post">
+    <label for="letter">Введите букву: </label>
+    <input type="text" id="letter" name="letter" required maxlength="1" pattern="[a-zA-Z]">
+    <button type="submit">Угадать</button>
+</form>
+
+<form th:action="@{/game/guessWord}" method="post" th:if="${!currentGame.gameOver && currentGame.guessedWord != currentGame.wordToGuess.value}">
+    <label for="wordGuess">Введите слово: </label>
+    <input type="text" id="wordGuess" name="word" th:disabled="${currentGame.gameOver || currentGame.guessedWord == currentGame.wordToGuess.value}">
+    <button type="submit" th:disabled="${currentGame.gameOver || currentGame.guessedWord == currentGame.wordToGuess.value}">Назвать слово</button>
+</form>
+
+<h2 th:if="${currentGame.gameOver}">
+    <span th:if="${currentGame.guessedWord == currentGame.wordToGuess.value || currentGame.guessedWord.equalsIgnoreCase(currentGame.wordToGuess.value)}">Поздравляем, вы угадали слово!</span>
+    <span th:unless="${currentGame.guessedWord == currentGame.wordToGuess.value || currentGame.guessedWord.equalsIgnoreCase(currentGame.wordToGuess.value)}">Игра окончена. Загаданное слово: <span th:text="${currentGame.wordToGuess.value}"></span></span>
+</h2>
+</body>
+</html>

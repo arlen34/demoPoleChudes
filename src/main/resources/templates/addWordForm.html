@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление слова с вопросом</title>
+</head>
+<body>
+<h1>Добавление слова с вопросом</h1>
+
+<form th:action="@{/admin/addWord}" method="post" th:object="${word}">
+    <label for="value">Слово: </label>
+    <input type="text" id="value" name="value" required>
+    <br>
+    <label for="question">Вопрос: </label>
+    <input type="text" id="question" name="question" required>
+    <br>
+    <button type="submit">Добавить</button>
+</form>
+
+<p th:if="${param.success}">Слово с вопросом успешно добавлено!</p>
+</body>
+</html>
