@@ -28,5 +28,6 @@
     <span th:if="${currentGame.guessedWord == currentGame.wordToGuess.value || currentGame.guessedWord.equalsIgnoreCase(currentGame.wordToGuess.value)}">Поздравляем, вы угадали слово!</span>
     <span th:unless="${currentGame.guessedWord == currentGame.wordToGuess.value || currentGame.guessedWord.equalsIgnoreCase(currentGame.wordToGuess.value)}">Игра окончена. Загаданное слово: <span th:text="${currentGame.wordToGuess.value}"></span></span>
 </h2>
+<a th:href="@{/admin/addWord}">Добавить слово (кнопка для админа)</a>
 </body>
 </html>
