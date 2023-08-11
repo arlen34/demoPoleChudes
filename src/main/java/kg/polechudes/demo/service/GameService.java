@@ -12,23 +12,8 @@ public class GameService {
 
     private final WordRepository wordRepository;
 
-//    public GameService(WordRepository wordRepository) {
-//        this.wordRepository = wordRepository;
-//    }
-
-//    private String[] words = {"apple", "banana", "cherry", "grape", "orange"};
-
-    //    public Game startGame() {
-//        Game game = new Game();
-//        game.setWordToGuess(words[new Random().nextInt(words.length)]);
-//        game.setGuessedWord("_".repeat(game.getWordToGuess().length()));
-//        game.setRemainingAttempts(6);
-//        game.setGameOver(false);
-//        return game;
-//    }
     public Game startGame(Word word) {
         Game game = new Game();
-//        Word randomWord = getRandomWord();
         game.setWordToGuess(word);
         game.setGuessedWord("_".repeat(word.getValue().length()));
         game.setRemainingAttempts(6);
